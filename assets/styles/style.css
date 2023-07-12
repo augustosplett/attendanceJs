@@ -1,0 +1,24 @@
+body {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+nav{
+    width: 100vw;
+}
+#video-container{
+    position: relative;
+    box-sizing: border-box;
+}
+
+.myCanvas {
+    position: absolute;
+    top: 0; 
+    left: 0;
+}
+

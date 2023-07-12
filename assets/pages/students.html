@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaSalle College - Attendance System</title>
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <script src="../scripts/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/students.js"></script>
+</head>
+<body onload="updateStudentsList()">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/assets/img/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                LaSalle College
+            </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="../../index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/assets/pages/face-recognition.html">Attendance</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Reports</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Management
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Professors</a></li>
+                  <li><a class="dropdown-item" href="/assets/pages/Students.html">Students</a></li>
+                  <li><a class="dropdown-item" href="#">Courses</a></li>
+                  <li><a class="dropdown-item" href="#">Groups</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container">
+        <form>
+            <div class="mb-3">
+                <label for="first-name" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="first-name" >
+            </div>
+            <div class="mb-3">
+                <label for="last-name" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="last-name">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" >
+            </div>
+            <button type="submit" class="btn btn-danger">Add</button>
+            <button type="submit" class="btn btn-danger" disabled>Save</button>
+            <button type="submit" class="btn btn-danger" disabled>Capture image</button>
+          </form>
+          <hr>
+          <div>
+            Students
+            <ul id="students-list" class="list-group">
+                <!--Create a list dinamicaly and use the database ID to set the ID attribute-->
+
+            </ul>
+          </div>
+
+      </div>
+
+
+</body>
+</html>
