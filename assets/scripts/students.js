@@ -41,3 +41,37 @@ async function updateStudentsList(){
         listOfStudents.appendChild(line);
     })
 }
+
+async function insertStudent(){
+    
+    first_name = document.getElementById('first-name').value
+    last_name = document.getElementById('last-name').value
+    email = document.getElementById('email').value
+
+    var url = "http://localhost:5000/student"; 
+
+    var data = {
+        first_name: first_name,
+        last_name: last_name,
+        email: email
+    };
+
+    fetch(url, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log("API response:", result);
+        updateStudentsList();
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+
+    event.preventDefault()
+    
+}

@@ -47,7 +47,7 @@
       </nav>
 
       <div class="container">
-        <form>
+        <form onsubmit="insertStudent()">
             <div class="mb-3">
                 <label for="first-name" class="form-label">First Name</label>
                 <input type="text" class="form-control" id="first-name" >
@@ -57,8 +57,8 @@
                 <input type="text" class="form-control" id="last-name">
             </div>
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" >
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" >
             </div>
             <button type="submit" class="btn btn-danger">Add</button>
             <button type="submit" class="btn btn-danger" disabled>Save</button>
