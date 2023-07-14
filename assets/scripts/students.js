@@ -24,20 +24,56 @@ async function updateStudentsList(){
     data.forEach((el, index) => {
         const line = document.createElement('li');
         line.className = 'list-group-item';
+        line.style.display = 'flex';
+        line.style.justifyContent = 'space-between'
 
-        const lineRadio = document.createElement('input');
-        lineRadio.type = 'radio';
-        lineRadio.name = 'student-group';
-        lineRadio.className = 'form-check-input me-1';
-        lineRadio.id = index;
+        const studentName = document.createElement('span')
+        studentName.id = index;
+        studentName.innerHTML = `${el.first_name} ${el.last_name}`;
 
-        const lineText = document.createElement('label') ;
-        lineText.className = 'form-check-label';
-        lineText.for = index;
-        lineText.innerHTML = `${el.first_name} ${el.last_name}`;
+        studentContainer = document.createElement('div')
+        studentContainer.className = 'container';
+        studentContainer.style.display = 'inline';
+        studentContainer.appendChild(studentName)
 
-        line.appendChild(lineRadio);
-        line.appendChild(lineText);
+        const delButton = document.createElement('button')
+        delButton.className = 'btn btn-danger';
+        delButton.innerText = 'DEL';
+        delButton.style.marginLeft = '10px';
+        delButton.id = `btn-del-${index}`
+        delButton.addEventListener("click", async function() {
+            url = `http://localhost:5000/student/${index}`
+
+            await fetch(url, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }}
+            )
+            await updateStudentsList()
+        });
+
+        const editButton = document.createElement('button')
+        editButton.className = 'btn btn-danger';
+        editButton.innerText = 'EDIT';
+        editButton.style.marginLeft = '10px';
+        editButton.id = `btn-edit-${index}`
+        editButton.addEventListener("click", function() {
+            console.log(`Button edit ${index} clicked!`);
+        });
+
+        btnContainer = document.createElement('div')
+        btnContainer.className = 'container';
+        btnContainer.style.display = 'inline';       
+        btnContainer.style.display = 'flex';
+        btnContainer.style.justifyContent = 'flex-end'
+        btnContainer.appendChild(delButton);
+        btnContainer.appendChild(editButton);
+
+
+        line.appendChild(studentContainer);
+        line.appendChild(btnContainer)
+        
         listOfStudents.appendChild(line);
     })
 }
