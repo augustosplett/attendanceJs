@@ -49,6 +49,7 @@
       <div class="container">
         <form onsubmit="insertStudent()">
             <div class="mb-3">
+                <input type="text" class="form-control" id="student-id" style="display: none">
                 <label for="first-name" class="form-label">First Name</label>
                 <input type="text" class="form-control" id="first-name" >
             </div>
@@ -61,7 +62,7 @@
                 <input type="email" class="form-control" id="email" >
             </div>
             <button type="submit" class="btn btn-danger">Add</button>
-            <button type="submit" class="btn btn-danger" disabled>Save</button>
+            <button type="button" class="btn btn-danger" onclick="updateStudent()">Save</button>
             <button type="submit" class="btn btn-danger" disabled>Capture image</button>
           </form>
           <hr>

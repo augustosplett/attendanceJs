@@ -8,7 +8,7 @@ function clearList(list) {
     while (list.firstChild) {
         list.removeChild(list.firstChild);
     }
-  }
+}
 
 async function updateStudentsList(){
     //defining the element tha will receive the students name
@@ -58,8 +58,14 @@ async function updateStudentsList(){
         editButton.innerText = 'EDIT';
         editButton.style.marginLeft = '10px';
         editButton.id = `btn-edit-${index}`
-        editButton.addEventListener("click", function() {
-            console.log(`Button edit ${index} clicked!`);
+        editButton.addEventListener("click", async function() {
+            data = await fetch(`http://localhost:5000/student/${index}`)
+            .then(request => request.json())
+            console.log(data);
+            document.getElementById('first-name').value = data.first_name
+            document.getElementById('last-name').value = data.last_name
+            document.getElementById('email').value = data.email
+            document.getElementById('student-id').value = index
         });
 
         btnContainer = document.createElement('div')
@@ -103,6 +109,7 @@ async function insertStudent(){
     .then(result => {
         console.log("API response:", result);
         updateStudentsList();
+        cleanForm();
     })
     .catch(error => {
         console.error("Error:", error);
@@ -110,4 +117,44 @@ async function insertStudent(){
 
     event.preventDefault()
     
+}
+
+async function  updateStudent(){
+    first_name = document.getElementById('first-name').value
+    last_name = document.getElementById('last-name').value
+    email = document.getElementById('email').value
+    id = document.getElementById('student-id').value
+
+    var url = `http://localhost:5000/student/${id}`; 
+
+    var data = {
+        first_name: first_name,
+        last_name: last_name,
+        email: email
+    };
+
+    await fetch(url, {
+    method: "put",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log("API response:", result);
+        updateStudentsList();
+        cleanForm();
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+    
+}
+
+function cleanForm(){
+    document.getElementById('first-name').value = ""
+    document.getElementById('last-name').value = ""
+    document.getElementById('email').value = ""
+    document.getElementById('student-id').value = ""
 }
