@@ -6,8 +6,10 @@
     <title>LaSalle College - Attendance System</title>
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/face-capture.css">
     <script src="../scripts/bootstrap.bundle.min.js"></script>
     <script src="../scripts/students.js"></script>
+    <script src="../scripts/face-capture.js" defer></script>
 </head>
 <body onload="updateStudentsList()">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -48,31 +50,55 @@
 
       <div class="container">
         <form onsubmit="insertStudent()">
-            <div class="mb-3">
-                <input type="text" class="form-control" id="student-id" style="display: none">
-                <label for="first-name" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="first-name" >
-            </div>
-            <div class="mb-3">
-                <label for="last-name" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="last-name">
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" >
-            </div>
-            <button type="submit" class="btn btn-danger">Add</button>
-            <button type="button" class="btn btn-danger" onclick="updateStudent()">Save</button>
-            <button type="submit" class="btn btn-danger" disabled>Capture image</button>
-          </form>
-          <hr>
-          <div>
-            Students
-            <ul id="students-list" class="list-group">
-                <!--Create a list dinamicaly and use the database ID to set the ID attribute-->
-
-            </ul>
+          <div class="mb-3">
+              <input type="text" class="form-control" id="student-id" style="display: none">
+              <label for="first-name" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="first-name" >
           </div>
+          <div class="mb-3">
+              <label for="last-name" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="last-name">
+          </div>
+          <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" >
+          </div>
+          <button type="submit" class="btn btn-danger">Add</button>
+          <button type="button" class="btn btn-danger" onclick="updateStudent()">Save</button>
+        </form>
+        
+        <hr>
+
+        <div>
+          Students
+          <ul id="students-list" class="list-group">
+              <!--Create a list dinamicaly and use the database ID to set the ID attribute-->
+          </ul>
+        </div>
+
+        <hr>
+
+        <!-- Botão para abrir o modal -->
+        <button id="openModalButton" class="btn btn-danger">Abrir Modal</button>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Capture Image</h1>
+              <span class="close">&times;</span>
+            </div>
+            <video id="video" autoplay></video>
+            <div class="modal-footer">
+              <button id="captureButton" class="btn btn-danger">Start</button>
+              <button id="restartButton" class="btn btn-danger">Restart</button>
+            </div>
+
+            <div id="photoGallery"></div>
+
+          </div>
+        </div>
+
 
       </div>
 
