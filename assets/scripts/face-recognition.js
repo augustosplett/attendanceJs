@@ -29,7 +29,7 @@ function getLabeledFaceDescriptions() {
       //posso trocar esse fo, que está lendo só duas imagens por um que leia todas dentro da pasta
       for (let i = 1; i <= 2; i++) {
         //lembrar de ajustar o path aqui
-        const img = await faceapi.fetchImage(`../labels/${label}/${i}.jpg`);       
+        const img = await faceapi.fetchImage(`../labels/${label}/${i}.png`);       
         const detections = await faceapi
           .detectSingleFace(img)
           .withFaceLandmarks()
