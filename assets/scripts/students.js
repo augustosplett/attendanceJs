@@ -74,6 +74,19 @@ async function updateStudentsList(){
             document.getElementById('email').value = data.email
             document.getElementById('student-id').value = data.id
         });
+    //open Modal button
+    const openModalButton = document.createElement('button');
+    openModalButton.className = 'btn btn-danger';
+    openModalButton.innerText = 'Capture Image';
+    openModalButton.style.marginLeft = '10px';
+    openModalButton.id = `btn-open-modal-${index}`
+    openModalButton.addEventListener('click', function() {
+        modal.style.display = 'block';
+        console.log(el.id)
+        console.log(idModal)
+        idModal.innerText = el.id;
+        activateCamera();
+    });
     //adding buttons on cantainer
         btnContainer = document.createElement('div')
         btnContainer.className = 'container';
@@ -82,11 +95,12 @@ async function updateStudentsList(){
         btnContainer.style.justifyContent = 'flex-end'
         btnContainer.appendChild(delButton);
         btnContainer.appendChild(editButton);
+        btnContainer.appendChild(openModalButton);
 
 //adding all elements on the list-item
         line.appendChild(studentContainer);
-        line.appendChild(btnContainer)
-        
+        line.appendChild(btnContainer);
+
         listOfStudents.appendChild(line);
     })
 }

@@ -1,5 +1,4 @@
 // Access the necessary HTML elements
-const openModalButton = document.getElementById('openModalButton');
 const modal = document.getElementById('myModal');
 const closeButton = document.getElementsByClassName('close')[0];
 const video = document.getElementById('video');
@@ -7,7 +6,7 @@ const captureButton = document.getElementById('captureButton');
 const saveButton = document.getElementById('saveButton');
 const restartButton = document.getElementById('restartButton');
 const photoGallery = document.getElementById('photoGallery');
-
+const idModal = document.getElementById('hidden-student-id');
 // Variables to store captured photos
 let capturedPhotos = [];
 
@@ -19,11 +18,6 @@ function clearPhotoGalery(){
 }
 
 restartButton.addEventListener('click', clearPhotoGalery)
-
-openModalButton.addEventListener('click', function() {
-    modal.style.display = 'block';
-    activateCamera();
-});
 
 closeButton.addEventListener('click', closeModal);
 
@@ -50,7 +44,7 @@ captureButton.addEventListener('click', captureImages );
 async function captureImages() {
 
     const numPhotos = 5; // Number of photos to capture
-    
+    user = idModal.innerText
     for (let i = 0; i < numPhotos; i++) {
         setTimeout(() => {
             const canvas = document.createElement('canvas');
@@ -63,7 +57,7 @@ async function captureImages() {
             canvas.toBlob((blob) => {
             const formData = new FormData();
             formData.append('imagem', blob, `${i}.png`);
-            sendFormData(formData)
+            sendFormData(formData, user)
 
             const photoElement = document.createElement('img');
             photoElement.src = URL.createObjectURL(blob);
@@ -76,11 +70,10 @@ async function captureImages() {
     }
 }
 
-async function sendFormData(form) {
-    console.log(form)
-    user = 'augusto'
+async function sendFormData(form, user) {
+
     // Send the FormData object to the API using fetch or any other method
-    await fetch(`http://127.0.0.1:5000/images/${user}`, {
+    await fetch(`http://127.0.0.1:3000/photos/${user}`, {
     method: 'POST',
     body: form,
     mode: 'no-cors'
